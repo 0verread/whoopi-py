@@ -20,6 +20,7 @@ class WhoopiLog:
     
     log_time = datetime.datetime.now()
     data = {
+      "pkey": self._token,
       "ukey": ukey,
       "method": method,
       "endpoint": endpoint,
