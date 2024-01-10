@@ -4,7 +4,7 @@ from typing import Optional
 
 from whoopi.constants import APIENDPOINTS
 
-class WhoopiLog:
+class Whoopi:
   """whoopi API client"""
   def __init__(self, token: str) -> None:
     self._token = token #project key/token
