@@ -6,8 +6,8 @@ from whoopi.constants import APIENDPOINTS
 
 class Whoopi:
   """whoopi API client"""
-  def __init__(self, token: str) -> None:
-    self._token = token #project key/token
+  def __init__(self, ptoken: str) -> None:
+    self._ptoken = ptoken #project key/token
 
   def logit(self, 
             ukey: str, 
@@ -18,17 +18,20 @@ class Whoopi:
             resp_body: Optional[str] = None
             )-> None:
     
-    log_time = datetime.datetime.now()
+    logged_at = datetime.datetime.now()
     data = {
-      "pkey": self._token,
-      "ukey": ukey,
-      "method": method,
-      "endpoint": endpoint,
-      "status": status,
-      "payload": payload,
-      "resp_body": resp_body,
-      "date": log_time 
+      "ptoken": self._ptoken,
+      "log_data": {
+        "ukey": ukey,
+        "method": method,
+        "endpoint": endpoint,
+        "status": status,
+        "payload": payload,
+        "resp_body": resp_body,
+        "logged_at": logged_at
+      }
     }
+
     response = requests.post(APIENDPOINTS.LOG, data=data)
 
     if response.status_code != 200:
