@@ -1,5 +1,4 @@
 import requests
-import datetime
 from typing import Optional
 
 from whoopi.constants import APIENDPOINTS
@@ -18,7 +17,6 @@ class Whoopi:
             resp_body: Optional[str] = None
             )-> None:
     
-    logged_at = datetime.datetime.now()
     data = {
       "ptoken": self._ptoken,
       "log_data": {
@@ -28,12 +26,11 @@ class Whoopi:
         "status": status,
         "payload": payload,
         "resp_body": resp_body,
-        "logged_at": logged_at
       }
     }
 
     response = requests.post(APIENDPOINTS.LOG, data=data)
-
+    # TODO: @Jeet better error handling
     if response.status_code != 200:
       raise Exception
     return
