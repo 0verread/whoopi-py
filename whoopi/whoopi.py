@@ -29,8 +29,7 @@ class Whoopi:
       }
     }
 
-    response = requests.post(APIENDPOINTS.LOG, data=data)
-
+    response = requests.post(APIENDPOINTS.LOG, json=data)
     # TODO: @Jeet better error handling
     if response.status_code != 200:
       raise Exception
